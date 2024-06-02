@@ -1,0 +1,40 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class NavigationPanel extends JPanel {
+ private CalendarPanel calendarPanel;
+ private JComboBox<String> monthComboBox;
+ private JComboBox<Integer> yearComboBox;
+ public NavigationPanel(CalendarPanel calendarPanel) {
+ this.calendarPanel = calendarPanel;
+ setLayout(new FlowLayout());
+ // Month ComboBox
+ String[] months = {
+ "January", "February", "March", "April", "May", "June",
+ "July", "August", "September", "October", "November", "December"
+ };
+ monthComboBox = new JComboBox<>(months);
+ monthComboBox.addActionListener(new ActionListener() {
+ @Override
+ public void actionPerformed(ActionEvent e) {
+ int month = monthComboBox.getSelectedIndex();
+ calendarPanel.setMonth(month);
+ }
+ });
+ add(monthComboBox);
+ // Year ComboBox
+ yearComboBox = new JComboBox<>();
+ for (int i = 1900; i <= 2100; i++) {
+ yearComboBox.addItem(i);
+ }
+ yearComboBox.addActionListener(new ActionListener() {
+ @Override
+ public void actionPerformed(ActionEvent e) {
+ int year = (int) yearComboBox.getSelectedItem();
+ calendarPanel.setYear(year);
+ }
+ });
+ add(yearComboBox);
+ }
+} 

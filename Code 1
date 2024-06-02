@@ -1,0 +1,24 @@
+import javax.swing.*;
+import java.awt.*;
+public class CalendarApp extends JFrame {
+ public CalendarApp() {
+ setTitle("Calendar Application");
+ setSize(800, 600);
+ setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ setLocationRelativeTo(null);
+ initUI();
+ }
+ private void initUI() {
+ // Create and add components
+ CalendarPanel calendarPanel = new CalendarPanel();
+ NavigationPanel navigationPanel = new NavigationPanel(calendarPanel);
+ add(navigationPanel, BorderLayout.NORTH);
+ add(calendarPanel, BorderLayout.CENTER);
+ }
+ public static void main(String[] args) {
+ SwingUtilities.invokeLater(() -> {
+ CalendarApp app = new CalendarApp();
+ app.setVisible(true);
+ });
+ }
+} 
